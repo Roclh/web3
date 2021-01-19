@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Колесников Никита, №3</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+
+</h:head>
+<h:body>
+
+    <div class="header">
+        <h1>Веб-программирование, Лаб. 3, Вариант 10231</h1>
+        <div><p id="credit"><img src="#{resource['img/tanks.gif']}" width="2em" height="1em"
+                                 alt="Лучшая картинка в мире"/>
+            <a id="git" href="https://github.com/Roclh" target="_blank" title="Перейти к профилю Github разработчика">Колесников
+                Никита Алексеевич, P3210</a>
+            <img src="#{resource['img/tanks.gif']}" width="2em" height="1em" alt="Лучшая картинка в мире"/></p>
+        </div>
+    </div>
+
+
+    <div class="form">
+        <h:form id="form">
+            <br/>
+            <h:outputText value="X = "/>
+            <h:inputText id="x" value="#{bean.x}" required="true" maxlength="9"
+                         requiredMessage="X Value is required."
+                         converterMessage="X Value must be a number."
+                         validatorMessage="X Value must be a number between -3 and 3.">>
+                <f:validateDoubleRange minimum="-3" maximum="3"/>
+                <f:ajax event="change" render="messages"/>
+            </h:inputText>
+            <br/>
+
+            <h:outputText value="Y = "/>
+            <h:inputText id="y" value="#{bean.y}" required="true" maxlength="9"
+                         requiredMessage="Y Value is required."
+                         converterMessage="Y Value must be a number."
+                         validatorMessage="Y Value must be a number between -3 and 5.">>
+                <f:validateDoubleRange minimum="-3" maximum="5"/>
+                <f:ajax event="change" render="messages"/>
+            </h:inputText>
+            <br/>
+            <h:outputText value="R = "/>
+            <h:commandButton id="r1" type="button" value="1" label="R1" onclick="setR(1)"/>
+            <h:commandButton id="r2" type="button" value="2" label="R2" onclick="setR(2)"/>
+            <h:commandButton id="r3" type="button" value="3" label="R3" onclick="setR(3)"/>
+            <h:commandButton id="r4" type="button" value="4" label="R4" onclick="setR(4)"/>
+            <h:commandButton id="r5" type="button" value="5" label="R5" onclick="setR(5)"/>
+            <br/>
+
+            <h:commandButton id="checkButton" type="button" update="entries_table" label="Check value" onclick="check()"
+                             icon="pi pi-chevron-circle-right" value="Проверить"/>
+            <br/>
+        </h:form>
+        <h:form id="tableForm" style="display: none">
+            <h:inputHidden id="pointX" value="#{bean.x}"/>
+            <h:inputHidden id="pointY" value="#{bean.y}"/>
+            <h:inputHidden id="pointR" value="#{bean.r}"/>
+            <h:commandButton id="hiddenButton" update="entries_table" label="Check value"
+                             icon="pi pi-chevron-circle-right" value="Check" action="#{bean.save}">
+            </h:commandButton>
+        </h:form>
+        <br/>
+        <canvas id="area" width="300px" height="300px">
+            Ваш браузер не поддерживает canvas
+        </canvas>
+        <br/>
+        <h:dataTable id="Points" value="#{bean.points.points}" var="point">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="X"/>
+                </f:facet>
+                <h:outputText value="#{point.x}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Y"/>
+                </f:facet>
+                <h:outputText value="#{point.y}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="R"/>
+                </f:facet>
+                <h:outputText value="#{point.r}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Result"/>
+                </f:facet>
+                <h:outputText value="#{point.result}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Time"/>
+                </f:facet>
+                <h:outputText value="#{point.time}"/>
+            </h:column>
+        </h:dataTable>
+        <br/>
+
+
+    </div>
+    <div class="footer">ИТМО<br/>2020</div>
+
+
+
+    <h:outputScript library="js" name="check.js"/>
+    <h:outputScript library="js" name="canvas.js"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+
+</h:body>
+</html>

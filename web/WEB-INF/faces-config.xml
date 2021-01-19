@@ -9,11 +9,8 @@
         <navigation-case>
             <description>To main page</description>
             <from-outcome>index</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
+            <to-view-id>/views/index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
-
-    
-    
 </faces-config>
