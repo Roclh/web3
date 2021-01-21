@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://java.sun.com/jsf/html">
 <h:head>
     <title>Колесников Никита, №3</title>
     <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
@@ -25,6 +25,8 @@
 
     <div class="form">
         <h:form id="form">
+
+            <p:messages id="messages"/>
             <br/>
             <h:outputText value="X = "/>
             <h:inputText id="x" value="#{bean.x}" required="true" maxlength="9"
@@ -53,15 +55,16 @@
             <h:commandButton id="r5" type="button" value="5" label="R5" onclick="setR(5)"/>
             <br/>
 
-            <h:commandButton id="checkButton" type="button" update="entries_table" label="Check value" onclick="check()"
+            <h:commandButton id="checkButton" type="button" update="Points" label="Check value" onclick="check()"
                              icon="pi pi-chevron-circle-right" value="Проверить"/>
+            <h:commandButton label="Back" action="entry" value="Вернуться"/>
             <br/>
         </h:form>
         <h:form id="tableForm" style="display: none">
             <h:inputHidden id="pointX" value="#{bean.x}"/>
             <h:inputHidden id="pointY" value="#{bean.y}"/>
             <h:inputHidden id="pointR" value="#{bean.r}"/>
-            <h:commandButton id="hiddenButton" update="entries_table" label="Check value"
+            <h:commandButton id="hiddenButton" update="Points" label="Check value"
                              icon="pi pi-chevron-circle-right" value="Check" action="#{bean.save}">
             </h:commandButton>
         </h:form>
@@ -70,7 +73,7 @@
             Ваш браузер не поддерживает canvas
         </canvas>
         <br/>
-        <h:dataTable id="Points" value="#{bean.points.points}" var="point">
+        <h:dataTable id="Points" value="#{PointList.points}" var="point">
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="X"/>

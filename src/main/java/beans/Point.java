@@ -5,25 +5,22 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Index;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity(name="Point")
+@Entity
+@NoArgsConstructor
 public class Point extends AbstractPoint implements Serializable {
 
     private Long id;
     private Double x;
     private Double y;
     private Double r;
-    private LocalDateTime time;
+    private Date time;
     private Boolean result;
-
 
     public Double getX() {
         return x;
@@ -49,11 +46,11 @@ public class Point extends AbstractPoint implements Serializable {
         this.r = r;
     }
 
-    public LocalDateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

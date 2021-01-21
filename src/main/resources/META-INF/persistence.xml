@@ -7,10 +7,11 @@
         <description>Entry persistent unit</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>beans.Point</class>
+        <class>db.DataBaseIntegration</class>
         <properties>
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+            <property name="hibernate.format_sql" value="true"/>
 
         </properties>
     </persistence-unit>

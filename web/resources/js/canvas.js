@@ -2,6 +2,24 @@ let canvas = document.getElementById('area');
 let context = canvas.getContext('2d');
 
 drawCanvas(r);
+drawPoints();
+
+function drawPoints(){
+    let points = getPoints();
+    if(points===null)points=[];
+    points.forEach(point => drawPoint(point.x, point.y, parseFloat(r), point.result));
+}
+
+function drawPoint(input_x,input_y,r,result){
+    let x = input_x*25+150;
+    let y = 150-input_y*25;
+    if(result === "true") context.fillStyle = "green";
+    if(result === "false") context.fillStyle = "red";
+    context.beginPath();
+    context.arc(x,y,2,0,Math.PI*2, false);
+    context.fill();
+    context.stroke();
+}
 
 function drawCanvas(r){
     //Задний фон
@@ -126,6 +144,7 @@ canvas.onmousedown = function (e){
             document.getElementById("tableForm:pointR").value = r;
             document.getElementById("tableForm:hiddenButton").click();
             drawCanvas(r);
+            drawPoints();
         }else if(!(cy>=-3 &&cy<=5))
             alert("Ошибка валидации! Число должно быть от -3 до 5");
         else

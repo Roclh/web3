@@ -21,6 +21,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PointsListBean implements Serializable {
 
+    @Inject
+    private DataBaseIntegration dataBaseIntegration =new DataBaseIntegration();
+
     private List<Point> points;
 
     @PostConstruct
@@ -29,11 +32,14 @@ public class PointsListBean implements Serializable {
     }
 
     public void loadPoints(){
-        this.points = DataBaseIntegration.getAllPoints();
+        this.points = dataBaseIntegration.getAllPoints();
     }
 
     public List<Point> getPoints(){
         loadPoints();
+        if(points==null){
+            points=new ArrayList<>();
+        }
         return points;
     }
 }

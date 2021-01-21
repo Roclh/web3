@@ -3,6 +3,7 @@ let r=document.getElementById("tableForm:pointR").value, responce = '';
 function setR(value){
     r = value;
     drawCanvas(r);
+    drawPoints();
 }
 
 function reset(){
@@ -17,7 +18,23 @@ function check(){
         document.getElementById("tableForm:pointR").value = r;
         document.getElementById("tableForm:hiddenButton").click();
         drawCanvas(r);
+        drawPoints();
     }else alert("Что-то пошло не так!");
+}
+
+
+function getPoints() {
+    let result =[];
+    let table = document.getElementById('Points');
+    for (let r = 1, n = table.rows.length; r < n; r++) {
+        result.push({
+            x: table.rows[r].cells[0].innerHTML,
+            y: table.rows[r].cells[1].innerHTML,
+            r: table.rows[r].cells[2].innerHTML,
+            result: table.rows[r].cells[3].innerHTML
+        })
+    }
+    return result;
 }
 
 // function show_coords(event) {

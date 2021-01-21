@@ -13,11 +13,12 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class AbstractPoint {
+public abstract class AbstractPoint {
 
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
 }
