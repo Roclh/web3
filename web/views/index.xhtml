@@ -34,7 +34,7 @@
                          converterMessage="X Value must be a number."
                          validatorMessage="X Value must be a number between -3 and 3.">>
                 <f:validateDoubleRange minimum="-3" maximum="3"/>
-                <f:ajax event="change" render="messages"/>
+                <f:ajax execute="@form" event="change" render="messages"/>
             </h:inputText>
             <br/>
 
@@ -44,20 +44,22 @@
                          converterMessage="Y Value must be a number."
                          validatorMessage="Y Value must be a number between -3 and 5.">>
                 <f:validateDoubleRange minimum="-3" maximum="5"/>
-                <f:ajax event="change" render="messages"/>
+                <f:ajax execute="@form" event="change" render="messages"/>
             </h:inputText>
             <br/>
             <h:outputText value="R = "/>
-            <h:commandButton id="r1" type="button" value="1" label="R1" onclick="setR(1)"/>
-            <h:commandButton id="r2" type="button" value="2" label="R2" onclick="setR(2)"/>
-            <h:commandButton id="r3" type="button" value="3" label="R3" onclick="setR(3)"/>
-            <h:commandButton id="r4" type="button" value="4" label="R4" onclick="setR(4)"/>
-            <h:commandButton id="r5" type="button" value="5" label="R5" onclick="setR(5)"/>
+            <h:commandButton id="r1" type="button" value="1" label="R1" onclick="setR(1)"><f:ajax execute="@form" onevent="setR(1)" render="messages"/></h:commandButton>
+            <h:commandButton id="r2" type="button" value="2" label="R2" onclick="setR(2)"><f:ajax execute="@form" onevent="setR(2)" render="messages"/></h:commandButton>
+            <h:commandButton id="r3" type="button" value="3" label="R3" onclick="setR(3)"><f:ajax execute="@form" onevent="setR(3)" render="messages"/></h:commandButton>
+            <h:commandButton id="r4" type="button" value="4" label="R4" onclick="setR(4)"><f:ajax execute="@form" onevent="setR(4)" render="messages"/></h:commandButton>
+            <h:commandButton id="r5" type="button" value="5" label="R5" onclick="setR(5)"><f:ajax execute="@form" onevent="setR(5)" render="messages"/></h:commandButton>
             <br/>
 
             <h:commandButton id="checkButton" type="button" update="Points" label="Check value" onclick="check()"
-                             icon="pi pi-chevron-circle-right" value="Проверить"/>
-            <h:commandButton label="Back" action="entry" value="Вернуться"/>
+                             icon="pi pi-chevron-circle-right" value="Проверить">
+                <f:ajax execute="@form" onevent="setR(r)" render="messages"/>
+            </h:commandButton>
+            <h:commandButton label="Back" action="entry" value="Вернуться"><f:ajax event="change" render="messages"/></h:commandButton>
             <br/>
         </h:form>
         <h:form id="tableForm" style="display: none">
@@ -110,7 +112,6 @@
 
     </div>
     <div class="footer">ИТМО<br/>2020</div>
-
 
 
     <h:outputScript library="js" name="check.js"/>

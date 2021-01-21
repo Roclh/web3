@@ -28,7 +28,7 @@ public class DataBean {
     public String save() {
         System.out.println(x.toString() + ' ' + y.toString() + ' ' + r.toString());
         if (insertIntoDatabase(pointFactory.buildPoint(this))) {
-            return "success";
+            return "index";
         } else return "failure";
 
     }
